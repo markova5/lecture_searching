@@ -1,6 +1,8 @@
 from pathlib import Path
 import json
 
+from pkg_resources import non_empty_lines
+
 from generators import ordered_sequence
 
 
@@ -41,15 +43,36 @@ def linear_search(seq, number):
             count += 1
     return positions, count
 
+def binary_search(seq, target):
+    left = 0
+    right = len(seq) -1
 
+    middle = left + (right-left) // 2
+
+    while left <= right:
+        if seq[middle] == target:
+            return middle
+        elif seq[middle] > target:
+            left = middle - 1
+        else:
+            right = middle +1
+    return None
 
 
 def main():
+# nacitani dat
     sequential_data = read_data("sequential.json", "unordered_numbers")
     print(sequential_data)
+    ordered_numbers = read_data("sequential.json", "ordered_numbers")
+    print(ordered_numbers)
 
+# funkce linear search
     number = 5
     print(linear_search(sequential_data, number))
+
+# funkce binary search
+    target = 5
+    result = binary_search(ordered_numbers, target)
 
 
 if __name__ == "__main__":
