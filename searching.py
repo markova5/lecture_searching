@@ -94,7 +94,12 @@ plt.show()
 
 
 
-# def pattern_search(seq, targetn):
+def pattern_search(seq, target = "ATA"):
+    for i in range(len(seq)):
+        kodon = seq[i:i:2]
+        if kodon == target:
+
+
 
 
 def main():
@@ -111,6 +116,8 @@ def main():
 # funkce binary search
     target = 5
     result = binary_search(ordered_numbers, target)
+
+#  funkce pattern search
 
 
 if __name__ == "__main__":
