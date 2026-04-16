@@ -1,6 +1,9 @@
 from pathlib import Path
 import json
 
+from generators import ordered_sequence
+
+
 def read_data(file_name, field):
     """
     Reads a JSON file and returns data for a given field.
@@ -28,32 +31,32 @@ def read_data(file_name, field):
         return(data[field])
 
 
+def linear_search(seq, number):
+    positions = []
+    count = 0
 
-# def linear_search(sequence, number):
-#     positions = []
-#     count = 0
-#
-#     for i, x in enumerate(sequential_data, start=0):
-#         if x == number:
-#             positions.append(i)
-#             count += 1
-#         return positions, count
-#
-#
-# def main():
-#     sequential_data = read_data("sequential.json", "unordered_numbers")
-#     print(sequential_data)
-#     number = 5
-#
-...
+    for i, x in enumerate(seq, start=0):
+        if x == number:
+            positions.append(i)
+            count += 1
+    return positions, count
+
+
+
+
+def main():
+    sequential_data = read_data("sequential.json", "unordered_numbers")
+    print(sequential_data)
+
+    number = 5
+    print(linear_search(sequential_data, number))
+
+
 if __name__ == "__main__":
     main()
 
 
 
 
-#     number = 5
-#     result = linear_search("sequential_data", "number")
-#     print(result)
-#
+
 #
