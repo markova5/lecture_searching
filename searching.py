@@ -3,7 +3,8 @@ import json
 
 import time
 import matplotlib.pyplot as plt
-from generators import unordered_sequence, ordered_sequence, dna_sequence
+from generators import unordered_sequence
+from generators import  ordered_sequence
 
 def read_data(file_name, field):
     """
@@ -46,33 +47,52 @@ def binary_search(seq, target):
     left = 0
     right = len(seq) -1
 
-    middle = left + (right-left) // 2
+    middle = (left + right) // 2
 
     while left <= right:
         if seq[middle] == target:
             return middle
-        elif seq[middle] > target:
-            left = middle - 1
+        elif seq[middle] < target:
+            left = middle + 1
+            middle = (left + right) // 2
         else:
-            right = middle + 1
+            right = middle - 1
+            middle = (left + right) // 2
     return None
 
 
-def benchmark_searches():
-    numbers = [100, 500, 1000, 5000, 10000]
 
-    linear_times = []
-    binary_times = []
+sizes = [100, 500, 1000, 5000, 10000]
+linear_times = []
+binary_times = []
+target = 54
 
+for i in range(len(sizes)):
+    ordered = ordered_sequence(sizes[i])
+    unordered = unordered_sequence(sizes[i])
 
-
-    searching.linear_search(data, number)
-    searching.binary_search(data, number)
-
+    #     linear_search
     start = time.perf_counter()
-
+    linear_search(unordered, target)
     end = time.perf_counter()
-    duration = end - start
+    linear_times.append(end - start)
+
+        # binary_search
+    start = time.perf_counter()
+    binary_search(ordered, target)
+    end = time.perf_counter()
+    binary_times.append(end - start)
+
+
+plt.plot(sizes, linear_times)
+plt.plot(sizes, binary_times)
+
+plt.xlabel("Velikost vstupu")
+plt.ylabel("Čas [s]")
+plt.title("Ukázkový graf měření")
+plt.show()
+
+
 
 # def pattern_search(seq, targetn):
 
