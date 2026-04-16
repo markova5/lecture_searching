@@ -1,10 +1,9 @@
 from pathlib import Path
 import json
 
-from pkg_resources import non_empty_lines
-
-from generators import ordered_sequence
-
+import time
+import matplotlib.pyplot as plt
+from generators import unordered_sequence, ordered_sequence, dna_sequence
 
 def read_data(file_name, field):
     """
@@ -55,8 +54,27 @@ def binary_search(seq, target):
         elif seq[middle] > target:
             left = middle - 1
         else:
-            right = middle +1
+            right = middle + 1
     return None
+
+
+def benchmark_searches():
+    numbers = [100, 500, 1000, 5000, 10000]
+
+    linear_times = []
+    binary_times = []
+
+
+
+    searching.linear_search(data, number)
+    searching.binary_search(data, number)
+
+    start = time.perf_counter()
+
+    end = time.perf_counter()
+    duration = end - start
+
+# def pattern_search(seq, targetn):
 
 
 def main():
