@@ -1,7 +1,6 @@
 from pathlib import Path
 import json
 
-
 def read_data(file_name, field):
     """
     Reads a JSON file and returns data for a given field.
@@ -19,13 +18,42 @@ def read_data(file_name, field):
     """
     # get current working directory path
     cwd_path = Path.cwd()
-    
     file_path = cwd_path / file_name
 
+    with open(file_path, "r") as file:
+        data = json.load(file)
 
-def main():
-    pass
+    allowed_fields = ["unordered_numbers", "ordered_numbers", "dna_sequence"]
+    if field in allowed_fields:
+        return(data[field])
 
 
+
+# def linear_search(sequence, number):
+#     positions = []
+#     count = 0
+#
+#     for i, x in enumerate(sequential_data, start=0):
+#         if x == number:
+#             positions.append(i)
+#             count += 1
+#         return positions, count
+#
+#
+# def main():
+#     sequential_data = read_data("sequential.json", "unordered_numbers")
+#     print(sequential_data)
+#     number = 5
+#
+...
 if __name__ == "__main__":
     main()
+
+
+
+
+#     number = 5
+#     result = linear_search("sequential_data", "number")
+#     print(result)
+#
+#
